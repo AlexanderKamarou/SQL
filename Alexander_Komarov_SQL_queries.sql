@@ -21,13 +21,13 @@ LIMIT 10;
 -- Вывести категорию фильмов, на которую потратили больше всего денег.
 
 SELECT c.name AS category_name, SUM(p.amount) AS spent
-postgres-# FROM category AS c
-postgres-# JOIN film_category AS fc ON c.category_id=fc.category_id
-postgres-# JOIN film AS f ON f.film_id=fc.film_id
-postgres-# JOIN inventory AS i ON f.film_id=i.film_id
-postgres-# JOIN rental AS r ON i.inventory_id=r.inventory_id
-postgres-# JOIN payment AS p ON r.rental_id=p.rental_id
-postgres-# GROUP BY c.category_id
-postgres-# ORDER BY spent DESC
-postgres-# LIMIT 1;
+FROM category AS c
+JOIN film_category AS fc ON c.category_id=fc.category_id
+JOIN film AS f ON f.film_id=fc.film_id
+JOIN inventory AS i ON f.film_id=i.film_id
+JOIN rental AS r ON i.inventory_id=r.inventory_id
+JOIN payment AS p ON r.rental_id=p.rental_id
+GROUP BY c.category_id
+ORDER BY spent DESC
+LIMIT 1;
 
